@@ -37,7 +37,7 @@ def generate_archive(context: Context):
 
 
 @task
-def load_schema(context: Context, schema: Path="./models/infrastructure_base.yml") -> None:
+def load_schema(context: Context, schema: Path="./models/infrastructure_base.infrahub.yml") -> None:
     context.run(f"infrahubctl schema load {schema}")
     restart(context, component="infrahub-server")
 
