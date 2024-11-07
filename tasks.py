@@ -1,6 +1,6 @@
 import os
 
-from pathlib import Path
+# from pathlib import Path
 
 from invoke import task, Context  # type: ignore
 
@@ -24,10 +24,6 @@ COMPOSE_COMMAND = f"curl https://infrahub.opsmill.io/{VERSION if VERSION else ''
 @task
 def start(context: Context) -> None:
     context.run(f"{COMPOSE_COMMAND} up -d")
-
-# @task
-# def load_schema(context: Context, schema: Path=Path("./models/*.yml")) -> None:
-#     context.run(f"infrahubctl schema load {schema}")
 
 @task
 def load_schema(context: Context) -> None:
