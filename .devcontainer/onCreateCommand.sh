@@ -3,5 +3,5 @@
 poetry config virtualenvs.create true
 poetry install --no-interaction --no-ansi
 
-docker compose pull
-poetry run invoke start 
+# docker compose pull
+poetry run invoke start

@@ -1,5 +1,5 @@
-{% for interface in data.InfraDevice.edges[0].node.interfaces.edges %}
-{% if interface.node.__typename == "InfraInterfaceL3" %}
+{% for interface in data.DcimDevice.edges[0].node.interfaces.edges %}
+{% if interface.node.__typename == "DcimInterfaceL3" %}
 interface {{ interface.node.name.value }} 
   description {{ interface.node.description.value }}
   {% if interface.node.enabled %}

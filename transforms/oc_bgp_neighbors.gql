@@ -1,5 +1,5 @@
 query oc_bgp_neighbors ($device: String!) {
-  InfraBGPSession(device__name__value: $device) {
+  RoutingBGPSession(device__name__value: $device) {
     edges {
       node {
         id

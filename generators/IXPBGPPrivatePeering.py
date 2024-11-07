@@ -39,14 +39,14 @@ async def run(client: InfrahubClient, log: logging.Logger, branch: str, **kwargs
         peer_group = None
 
     ixp_peers = await client.filters(
-        kind="InfraIXPPeer",
+        kind="PeeringIXPPeer",
         branch=branch,
         asn__ids=[service.asn.id],
         ixp__ids=[service.ixp.id]
     )
 
     ixp_endpoints = await client.filters(
-        kind="InfraIXPEndpoint",
+        kind="PeeringIXPEndpoint",
         branch=branch,
         ixp__ids=[service.ixp.id]
     )
@@ -59,7 +59,7 @@ async def run(client: InfrahubClient, log: logging.Logger, branch: str, **kwargs
         ixp_endpoints = [ixp_endpoints[0]]
 
     local_asn = await client.get(
-        "InfraAutonomousSystem", branch=branch, asn__value=64511
+        "RoutingAutonomousSystem", branch=branch, asn__value=64511
     )
 
     try:
@@ -80,7 +80,7 @@ async def run(client: InfrahubClient, log: logging.Logger, branch: str, **kwargs
             name = f"otto_{org_slug}_{idx}"
 
             bgp_session = await client.create(
-                kind="InfraBGPSession",
+                kind="RoutingBGPSession",
                 name={"value": name, "owner": account.id, "is_protected": True},
                 branch=branch,
                 type={"value": "EXTERNAL", "owner": account.id, "is_protected": True},

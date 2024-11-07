@@ -1,8 +1,8 @@
 query {
-  InfraBGPSession(role__value: "transit") {
+  RoutingBGPSession(role__value: "transit") {
     edges {
       node {
-        id 
+        id
         name {
           value
         }
@@ -56,7 +56,7 @@ query {
       }
     }
   }
-  InfraInterfaceL3(role__value: "transit") {
+  DcimInterfaceL3(role__value: "transit") {
     edges {
       node {
         name {
@@ -84,7 +84,7 @@ query {
           node {
             id
             __typename
-	    ... on InfraIXPEndpoint {
+	    ... on PeeringIXPEndpoint {
 	      ixp {
 		node {
 		  id
@@ -96,7 +96,7 @@ query {
       }
     }
   }
-  InfraIXPPeer {
+  PeeringIXPPeer {
     edges {
       node {
         id

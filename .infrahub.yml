@@ -14,7 +14,7 @@ artifact_definitions:
     content_type: "application/json"
     targets: "arista_devices"
     transformation: "OCInterfaces"
-  - name: "Openconfig BGP for Artista devices"
+  - name: "Openconfig BGP for Arista devices"
     artifact_name: "openconfig-bgp"
     parameters:
       device: "name__value"

@@ -14,76 +14,45 @@
 
 This repository is demoing the key Infrahub features for an example service provider with IXP peerings.
 
-## Personal fork
+## Running the demo on your pc
 
-If you want to be able to make change to this repository, it is recommended to create a fork of this repository.
-Changes can be merged into the upstream repository using the pull request workflow.
+### Set environment variables
 
-## Using Github CodeSpaces
-
-To have a consistent user experience, independent of hardware resources, we recommend the usage of Github CodeSpaces.
-
-- Click the green `Code` button
-- Switch to the `Codespaces` tab
-- Click the `+ to the right of Codespaces` (or click the `...` button and select `New with options` to be able to select your region)
-
-## Using the demo environment
-
-### Installing dependencies on your PC
-
-We recommend that you use a dedicated virtual environment.
-The easiest way is to leverage `poetry`.
-
-```sh
-poetry install --no-root
+```console
+export INFRAHUB_ADDRESS="http://localhost:8000"
+export INFRAHUB_API_TOKEN="06438eb2-8019-4776-878c-0941b1f1d1ec"
 ```
 
-### Prerequisites
+### Install the Infrahub SDK
 
-Define and export the following environment variables:
-
-```bash
-export INFRAHUB_PRODUCTION=false
-export INFRAHUB_IMAGE_NAME=infrahub
-export INFRAHUB_SECURITY_SECRET_KEY=327f747f-efac-42be-9e73-999f08f86b92
-export INFRAHUB_SDK_API_TOKEN=06438eb2-8019-4776-878c-0941b1f1d1ec
-export INFRAHUB_SDK_TIMEOUT=20
-export INFRAHUB_METRICS_PORT=8001
-export INFRAHUB_DB_TYPE=neo4j
-export INFRAHUB_SECURITY_INITIAL_ADMIN_TOKEN=06438eb2-8019-4776-878c-0941b1f1d1ec
-export INFRAHUB_CONTAINER_REGISTRY=9r2s1098.c1.gra9.container-registry.ovh.net
-export INFRAHUB_VERSION=0.14.1
-export DATABASE_DOCKER_IMAGE="neo4j:5.19-community"
-export CACHE_DOCKER_IMAGE="redis:7.2"
-export MESSAGE_QUEUE_DOCKER_IMAGE="rabbitmq:3.12-management"
+```console
+poetry install --no-interaction --no-ansi --no-root
 ```
 
-### Spin up IXP demo environment
+### Start Infrahub
 
-```sh
-invoke start
+```console
+poetry run invoke start
 ```
 
-### Load the initial schema
+### Load schema and data into Infrahub
 
-```sh
-invoke load-schema
-```
+This will create:
 
-### Load data into the environment
+- Basic data (Account, organization, ASN, Device Type, and Tags)
+- Location data (Locations, VLANs, and Prefixes)
+- IXP data
 
-```sh
-invoke load-data
-```
-
-### Stop the IXP demo environment
-
-```sh
-invoke stop
+```console
+poetry run invoke load-schema load-data
 ```
 
 ### Stop and destroy the IXP demo environment
 
-```sh
+```console
 invoke destroy
 ```
+
+## Using Github CodeSpaces
+
+[Spin up in Github codespace](https://codespaces.new/opsmill/infrahub-demo-ixp)

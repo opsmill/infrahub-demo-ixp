@@ -1,6 +1,6 @@
 {
   "data": {
-    "InfraDevice": {
+    "DcimDevice": {
       "edges": [
         {
           "node": {
@@ -12,7 +12,7 @@
               "edges": [
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet1"
                     },
@@ -47,7 +47,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet10"
                     },
@@ -79,7 +79,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet2"
                     },
@@ -114,7 +114,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet3"
                     },
@@ -149,7 +149,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet4"
                     },
@@ -175,7 +175,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet5"
                     },
@@ -210,7 +210,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet6"
                     },
@@ -253,7 +253,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet7"
                     },
@@ -288,7 +288,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet8"
                     },
@@ -314,7 +314,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Ethernet9"
                     },
@@ -349,7 +349,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Loopback0"
                     },
@@ -384,7 +384,7 @@
                 },
                 {
                   "node": {
-                    "__typename": "InfraInterfaceL3",
+                    "__typename": "DcimInterfaceL3",
                     "name": {
                       "value": "Management0"
                     },
@@ -423,7 +423,7 @@
         }
       ]
     },
-    "InfraBGPSession": {
+    "RoutingBGPSession": {
       "count": 1,
       "edges": [
         {

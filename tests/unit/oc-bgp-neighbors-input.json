@@ -1,6 +1,6 @@
 {
   "data": {
-    "InfraBGPSession": {
+    "RoutingBGPSession": {
       "edges": [
         {
           "node": {

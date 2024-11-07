@@ -1,5 +1,5 @@
 query device_config($device: String!) {
-  InfraDevice(name__value: $device) {
+  DcimDevice(name__value: $device) {
     edges {
       node {
         id
@@ -9,7 +9,7 @@ query device_config($device: String!) {
         interfaces {
           edges {
             node{
-              ... on InfraInterfaceL3 {
+              ... on DcimInterfaceL3 {
                 __typename
                 name {
                   value
@@ -46,7 +46,7 @@ query device_config($device: String!) {
       }
     }
   }
-  InfraBGPSession(device__name__value: $device) {
+  RoutingBGPSession(device__name__value: $device) {
     count
     edges {
       node {

@@ -1,0 +1,230 @@
+# yaml-language-server: $schema=https://schema.infrahub.app/develop/schema.schema.json
+---
+version: '1.0'
+generics:
+  # - name: Ixp
+  #   namespace: Peering
+  #   description: "Generic network service"
+  #   label: "IXP"
+  #   default_filter: name__value
+  #   include_in_menu: true
+  #   order_by:
+  #     - name__value
+  #   display_labels:
+  #     - name__value
+
+  - name: Service
+    namespace: Peering
+    description: "Generic network service"
+    label: "Service"
+    default_filter: name__value
+    include_in_menu: false
+    order_by:
+      - name__value
+    display_labels:
+      - name__value
+    attributes:
+      - name: name
+        kind: Text
+      - name: description
+        kind: Text
+        optional: true
+
+nodes:
+  - name: IXPBGPPrivatePeering
+    namespace: Peering
+    label: "IXP BGP private peering"
+    description: "Private BGP peering over IXP"
+    menu_placement: "PeeringIXP"
+    include_in_menu: true
+    icon: mdi:switch
+    display_labels:
+      - name__value
+    inherit_from:
+      - "PeeringService"
+    attributes:
+      - name: name
+        label: Name
+        kind: Text
+        unique: true
+      - name: redundant
+        label: Redundant Sessions
+        kind: Boolean
+        optional: true
+    relationships:
+      - name: asn
+        label: ASN
+        peer: RoutingAutonomousSystem
+        cardinality: one
+        kind: Attribute
+      - name: ixp
+        label: IXP
+        cardinality: one
+        peer: PeeringIXP
+        kind: Attribute
+
+  - name: TransitPort
+    namespace: Peering
+    label: Transit Port
+    default_filter: name__value
+    menu_placement: PeeringIXP
+    include_in_menu: true
+    icon: mdi:serial-port
+    display_labels:
+      - name__value
+    inherit_from:
+      - "DcimEndpoint"
+    attributes:
+      - name: name
+        kind: Text
+        label: Name
+      - name: speed
+        kind: Number
+        label: Speed
+      - name: bandwidth
+        kind: Number
+        label: Bandwidth
+    relationships:
+      - name: asn
+        label: Peer ASN
+        peer: RoutingAutonomousSystem
+        cardinality: one
+        kind: Attribute
+      - name: location
+        label: Location
+        peer: LocationMetro
+        cardinality: one
+        kind: Attribute
+      - name: ip_address
+        label: IP Address
+        peer: IpamIPAddress
+        cardinality: one
+        kind: Attribute
+
+
+  - name: CircuitEndpoint
+    namespace: Peering
+    description: "A Circuit endpoint is attached to each end of a circuit"
+    label: "Circuit Endpoint"
+    icon: "mdi:ethernet-cable"
+    menu_placement: "PeeringIXP"
+    include_in_menu: true
+    attributes:
+      - name: description
+        kind: Text
+        optional: true
+    inherit_from:
+      - "DcimEndpoint"
+    relationships:
+      - name: building
+        label: Building
+        peer: LocationBuilding
+        optional: false
+        cardinality: one
+        kind: Attribute
+      - name: circuit
+        peer: DcimCircuit
+        optional: false
+        cardinality: one
+        kind: Parent
+
+  - name: IXP
+    namespace: Peering
+    description: "Internet Exchange Point"
+    label: "IXP"
+    icon: mdi:switch
+    include_in_menu: true
+    default_filter: name__value
+    display_labels:
+      - name__value
+    order_by:
+      - name__value
+    attributes:
+      - name: name
+        kind: Text
+      - name: description
+        kind: Text
+        optional: true
+    relationships:
+      - name: locations
+        peer: LocationGeneric
+        optional: true
+        cardinality: many
+        kind: Attribute
+      - name: endpoints
+        peer: PeeringIXPEndpoint
+        optional: true
+        cardinality: many
+        kind: Component
+      - name: peers
+        peer: PeeringIXPPeer
+        optional: true
+        cardinality: many
+        kind: Component
+
+  - name: IXPPeer
+    namespace: Peering
+    description: "Peer in an Internet Exchange Point"
+    label: "IXP Peer"
+    icon: mdi:switch
+    default_filter: name__value
+    menu_placement: "PeeringIXP"
+    include_in_menu: true
+    display_labels:
+      - name__value
+    order_by:
+      - name__value
+    attributes:
+      - name: name
+        kind: Text
+        optional: false
+        unique: true
+      - name: description
+        kind: Text
+        optional: true
+    relationships:
+      - name: ixp
+        peer: PeeringIXP
+        label: IXP
+        cardinality: one
+        kind: Attribute
+      - name: asn
+        peer: RoutingAutonomousSystem
+        optional: false
+        cardinality: one
+        kind: Attribute
+      - name: ipaddress
+        peer: IpamIPAddress
+        optional: true
+        cardinality: one
+        kind: Attribute
+
+
+  - name: IXPEndpoint
+    namespace: Peering
+    description: "Endpoint to Internet Exchange Point"
+    label: "IXP Endpoint"
+    icon: mdi:cable-data
+    default_filter: name__value
+    menu_placement: "PeeringIXP"
+    include_in_menu: true
+    display_labels:
+      - name__value
+    order_by:
+      - name__value
+    inherit_from:
+      - "DcimEndpoint"
+    attributes:
+      - name: name
+        kind: Text
+        optional: false
+        unique: true
+      - name: description
+        kind: Text
+        optional: true
+    relationships:
+      - name: ixp
+        peer: PeeringIXP
+        optional: false
+        cardinality: one
+        kind: Parent

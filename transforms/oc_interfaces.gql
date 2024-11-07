@@ -1,5 +1,5 @@
 query oc_interfaces ($device: String!) {
-  InfraDevice(name__value: $device) {
+  DcimDevice(name__value: $device) {
     edges {
       node {
         id
@@ -15,7 +15,7 @@ query oc_interfaces ($device: String!) {
               enabled {
                 value
               }
-              ... on InfraInterfaceL3 {
+              ... on DcimInterfaceL3 {
                 ip_addresses {
                   edges {
                     node {

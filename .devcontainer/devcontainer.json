@@ -19,25 +19,15 @@
         "shardulm94.trailing-spaces",
         "nickmillerdev.pytest-fixtures",
         "yzhang.markdown-all-in-one",
-        "GraphQL.vscode-graphql-syntax"
+        "GraphQL.vscode-graphql-syntax",
+        "redhat.vscode-yaml"
       ]
     }
   },
   "remoteUser": "vscode",
   "remoteEnv": {
-      "INFRAHUB_SDK_API_TOKEN": "06438eb2-8019-4776-878c-0941b1f1d1ec",
-      "INFRAHUB_SDK_TIMEOUT": "20",
-      "INFRAHUB_PRODUCTION": "false",
-      "INFRAHUB_CONTAINER_REGISTRY": "9r2s1098.c1.gra9.container-registry.ovh.net",
-      "INFRAHUB_IMAGE_NAME": "infrahub",
-      "INFRAHUB_VERSION": "0.14.1",
-      "INFRAHUB_SECURITY_INITIAL_ADMIN_TOKEN": "06438eb2-8019-4776-878c-0941b1f1d1ec",
-      "INFRAHUB_SECURITY_SECRET_KEY": "327f747f-efac-42be-9e73-999f08f86b92",
-      "INFRAHUB_METRICS_PORT": "8001",
-      "INFRAHUB_DB_TYPE": "neo4j",
-      "DATABASE_DOCKER_IMAGE": "neo4j:5.19-community",
-      "CACHE_DOCKER_IMAGE": "redis:7.2",
-      "MESSAGE_QUEUE_DOCKER_IMAGE": "rabbitmq:3.12-management"
+    "INFRAHUB_ADDRESS": "http://localhost:8000",
+    "INFRAHUB_API_TOKEN": "06438eb2-8019-4776-878c-0941b1f1d1ec"
   },
   "forwardPorts": [8000],
   "runArgs": ["--volume=/var/lib/docker", "--privileged"],
@@ -45,11 +35,15 @@
   "postStartCommand": "./.devcontainer/postStartCommand.sh",
   "postAttachCommand": "./.devcontainer/postAttachCommand.sh",
   "features": {
-    "docker-in-docker": "latest",
-    "github-cli": "latest"
+    "ghcr.io/devcontainers/features/docker-in-docker:latest": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:latest": {
+      "version": "latest"
+    }
   },
   "hostRequirements": {
-    "cpus": 8,
+    "cpus": 16,
     "memory": "16gb"
   }
 }

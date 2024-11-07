@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 def connected_on_ixp(interface: Dict[str, Any], ixp_peer: Dict[str, Any]) -> bool:
     if interface["connected_endpoint"]["node"] == None:
         return False
-    if  "InfraIXPEndpoint" != interface["connected_endpoint"]["node"]["__typename"]:
+    if  "PeeringIXPEndpoint" != interface["connected_endpoint"]["node"]["__typename"]:
         return False
     if interface["connected_endpoint"]["node"]["ixp"]["node"] == None:
         return False
@@ -35,31 +35,31 @@ class SpBGPSessionCheck(InfrahubCheck):
     query = "check_bgp_transit_session"
 
     def validate(self, data):
-        for bgp_session_node in data["InfraBGPSession"]["edges"]:
+        for bgp_session_node in data["RoutingBGPSession"]["edges"]:
             bgp_session = bgp_session_node["node"]
 
             local_ip = bgp_session["local_ip"]["node"]
             remote_ip = bgp_session["remote_ip"]["node"]
 
-            found, interface = get_interface_by_ip(local_ip, data["InfraInterfaceL3"])
+            found, interface = get_interface_by_ip(local_ip, data["DcimInterfaceL3"])
             if not found:
                 self.log_error(
                     message=f"BGP Session {bgp_session['name']} has a local IP that is not assigned to any Interface",
                     object_id=local_ip["id"],
-                    object_type="InfraIPAddress"
+                    object_type="IpamIPAddress"
                 )
 
-            found, ixp_peer = get_ixp_peer_by_ip(remote_ip, data["InfraIXPPeer"])
+            found, ixp_peer = get_ixp_peer_by_ip(remote_ip, data["PeeringIXPPeer"])
             if not found:
                 self.log_error(
                     message=f"BGP Session {bgp_session['name']} has a remote IP that is not assigned to any IXP Peer",
                     object_id=remote_ip["id"],
-                    object_type="InfraIPAddress",
+                    object_type="IpamIPAddress",
                 )
 
             if not connected_on_ixp(interface, ixp_peer):
                 self.log_error(
-                    message=f"BGP Session {bgp_session['name']} endpoints are not conneced to the same IXP",
+                    message=f"BGP Session {bgp_session['name']} endpoints are not connected to the same IXP",
                     object_id=bgp_session['name'],
-                    object_type="InfraBGPSession",
+                    object_type="RoutingBGPSession",
                 )

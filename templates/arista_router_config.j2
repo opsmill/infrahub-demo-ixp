@@ -1,5 +1,5 @@
 {% set ns = namespace(loopback_intf_name=none, loopback_ip=none, management_intf_name=none, management_ip=none, bgp_peer_groups={}) %}
-{% for intf in data.InfraDevice.edges[0].node.interfaces.edges %}
+{% for intf in data.DcimDevice.edges[0].node.interfaces.edges %}
 {%   if "role" in intf.node and intf.node.role.value == "loopback" %}
 {%     set ns.loopback_intf_name = intf.node.name.value %}
 {%     set ns.loopback_ip = intf.node.ip_addresses.edges[0].node.address.ip %}
@@ -8,7 +8,7 @@
 {%     set ns.management_ip = intf.node.ip_addresses.edges[0].node.address.ip %}
 {%   endif %}
 {% endfor %}
-hostname {{ data.InfraDevice.edges[0].node.name.value }}
+hostname {{ data.DcimDevice.edges[0].node.name.value }}
 ip name-server vrf MGMT 8.8.8.8
 !
 dns domain opsmill.com
@@ -30,7 +30,7 @@ no ip routing vrf MGMT
 !
 ip route vrf MGMT 0.0.0.0/0 192.168.123.1
 !
-{% if data.InfraBGPSession.count > 0 %}
+{% if data.RoutingBGPSession.count > 0 %}
 {% include 'templates/arista_bgp_config.j2' %}
 {% endif %}
 !

@@ -16,7 +16,7 @@ async def inherit_attribute_from_hierarchy(
             await attr.fetch()
             return attr.peer
         elif isinstance(attr, RelatedNode) and attr.schema.cardinality == "many":
-            raise InheritanceException(f"Relationships of cardinality many are not supported!")
+            raise InheritanceException("Relationships of cardinality many are not supported!")
         elif isinstance(attr, Attribute):
             return attr.value
 
