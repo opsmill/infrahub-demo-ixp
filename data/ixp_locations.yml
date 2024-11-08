@@ -1,0 +1,237 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+
+  # LOCATIONS
+  kind: LocationContinent
+  data:
+    - name: Europe
+      shortname: Europe
+      transit_policy_out: RM_TRANSIT_EMEA_OUT
+      transit_policy_in: RM_TRANSIT_EMEA_IN
+      children:
+        kind: LocationCountry
+        data:
+          - name: Belgium
+            shortname: Belgium
+          - name: Germany
+            shortname: Germany
+            children:
+              kind: LocationRegion
+              data:
+                - name: de-central
+                  shortname: de-central
+                  children:
+                    kind: LocationMetro
+                    data:
+                      - name: Frankfurt
+                        shortname: Frankfurt
+                        children:
+                          kind: LocationBuilding
+                          data:
+                            - name: building-3
+                              shortname: building-3
+                              children:
+                                kind: LocationFloor
+                                data:
+                                  - name: floor-32
+                                    shortname: floor-32
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-325
+                                          shortname: suite-325
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-3255
+                                                shortname: rack-3255
+                                  - name: floor-33
+                                    shortname: floor-33
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-338
+                                          shortname: suite-338
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-3389
+                                                shortname: rack-3389
+          - name: United Kingdom
+            shortname: United Kingdom
+            children:
+              kind: LocationRegion
+              data:
+                - name: uk-east
+                  shortname: uk-east
+                  children:
+                    kind: LocationMetro
+                    data:
+                      - name: London
+                        shortname: London
+                        children:
+                          kind: LocationBuilding
+                          data:
+                            - name: Equinix LD8
+                              shortname: Equinix LD8
+                              children:
+                                kind: LocationFloor
+                                data:
+                                  - name: floor-59
+                                    shortname: floor-59
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-ld8-596
+                                          shortname: suite-ld8-596
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: ld8-5964
+                                                shortname: ld8-5964
+                                              - name: ld8-5965
+                                                shortname: ld8-5965
+
+    - name: Africa
+      shortname: Africa
+      transit_policy_out: RM_TRANSIT_AFRICA_OUT
+      children:
+        kind: LocationCountry
+        data:
+          - name: Morocco
+            shortname: Morocco
+
+    - name: Asia
+      shortname: Asia
+      transit_policy_out: RM_TRANSIT_ASIA_OUT
+      children:
+        kind: LocationCountry
+        data:
+          - name: India
+            shortname: India
+          - name: Japan
+            shortname: Japan
+
+    - name: Oceania
+      shortname: Oceania
+      transit_policy_out: RM_TRANSIT_OCEANIA_OUT
+      children:
+        kind: LocationCountry
+        data:
+          - name: Australia
+            shortname: Australia
+
+    - name: North America
+      shortname: North America
+      transit_policy_out: RM_TRANSIT_NORTH_AMERICA_OUT
+      children:
+        kind: LocationCountry
+        data:
+          - name: United States of America
+            shortname: United States of America
+            children:
+              kind: LocationRegion
+              data:
+                - name: us-east
+                  shortname: us-east
+                  children:
+                    kind: LocationMetro
+                    data:
+                      - name: Atlanta
+                        shortname: Atlanta
+                      - name: south
+                        shortname: south
+                - name: us-central
+                  shortname: us-central
+                  children:
+                    kind: LocationMetro
+                    data:
+                      - name: Denver
+                        shortname: Denver
+                        children:
+                          kind: LocationBuilding
+                          data:
+                            - name: building-1
+                              shortname: building-1
+                              children:
+                                kind: LocationFloor
+                                data:
+                                  - name: floor-11
+                                    shortname: floor-11
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-111
+                                          shortname: suite-111
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-1111
+                                                shortname: rack-1111
+                                        - name: suite-112
+                                          shortname: suite-112
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-1121
+                                                shortname: rack-1121
+                                  - name: floor-12
+                                    shortname: floor-12
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-121
+                                          shortname: suite-121
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-1211
+                                                shortname: rack-1211
+                            - name: building-2
+                              shortname: building-2
+                              children:
+                                kind: LocationFloor
+                                data:
+                                  - name: floor-21
+                                    shortname: floor-21
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-211
+                                          shortname: suite-211
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-2111
+                                                shortname: rack-2111
+                                        - name: suite-212
+                                          shortname: suite-212
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-2121
+                                                shortname: rack-2121
+                                  - name: floor-22
+                                    shortname: floor-22
+                                    children:
+                                      kind: LocationSuite
+                                      data:
+                                        - name: suite-221
+                                          shortname: suite-221
+                                          children:
+                                            kind: LocationRack
+                                            data:
+                                              - name: rack-2211
+                                                shortname: rack-2211
+
+    - name: South America
+      shortname: South America
+      transit_policy_out: RM_SOUTH_AMERICA_OUT
+      children:
+        kind: LocationCountry
+        data:
+          - name: Brazil
+            shortname: Brazil
+

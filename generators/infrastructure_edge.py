@@ -896,7 +896,7 @@ async def branch_scenario_add_transit(
         branch=new_branch_name, kind="DcimDevice", name__value=device_name
     )
     gtt_organization = await client.get(
-        branch=new_branch_name, kind="OrganizationGeneric", name__value="GTT"
+        branch=new_branch_name, kind="OrganizationProvider", name__value="GTT"
     )
 
     role_spare = "spare"
@@ -1260,7 +1260,7 @@ async def run(client: InfrahubClient, log: logging.Logger, branch: str):
     for org in ORGANIZATIONS:
         obj = await client.create(
             branch=branch,
-            kind="OrganizationGeneric",
+            kind="OrganizationProvider",
             data={"name": {"value": org[0], "is_protected": True}},
         )
         batch.add(task=obj.save, node=obj)
@@ -1309,7 +1309,7 @@ async def run(client: InfrahubClient, log: logging.Logger, branch: str):
                     "owner": account_cloe.id,
                 },
                 "organization": {
-                    "id": store.get(kind="OrganizationGeneric", key=org[0]).id,
+                    "id": store.get(kind="OrganizationProvider", key=org[0]).id,
                     "source": account_pop.id,
                 },
             },

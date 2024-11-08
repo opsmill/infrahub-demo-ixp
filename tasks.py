@@ -8,6 +8,12 @@ DATA_GENERATORS = [
     "infrastructure_edge.py"
 ]
 
+DATA = [
+    "data/ixp_platforms.yml",
+    "data/ixp_locations.yml",
+    "data/ixp_devices.yml"
+    ]
+
 SCHEMAS = [
     "models/schema_library/base/*.yml",
     "models/schema_library/vlan.yml",
@@ -34,6 +40,11 @@ def load_schema(context: Context) -> None:
 def load_data(context: Context) -> None:
     for generator in DATA_GENERATORS:
         context.run(f"infrahubctl run generators/{generator}")
+
+@task
+def load_experimental(context: Context) -> None:
+    for datum in DATA:
+        context.run(f"infrahubctl object load {datum}")
 
 @task
 def destroy(context: Context) -> None:

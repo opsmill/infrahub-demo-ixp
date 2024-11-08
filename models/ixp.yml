@@ -228,3 +228,34 @@ nodes:
         optional: false
         cardinality: one
         kind: Parent
+
+# MODS OF SCHEMA LIBRARY
+extensions:
+  nodes:
+    - kind: LocationHosting
+      relationships:
+        - name: devices
+          peer: DcimPhysicalDevice
+          state: absent
+    - kind: DcimPhysicalDevice
+      relationships:
+        - name: location
+          peer: LocationHosting
+          state: absent
+
+    - kind: DcimDevice
+      relationships:
+        - name: racklocation
+          label: Rack Location
+          peer: "LocationRack"
+          optional: true
+          kind: Attribute
+          cardinality: one
+    - kind: LocationRack
+      relationships:
+        - name: device
+          label: Device
+          peer: DcimDevice
+          optional: true
+          kind: Attribute
+          cardinality: many
