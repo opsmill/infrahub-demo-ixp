@@ -6,7 +6,7 @@
           "node": {
             "id": "17b992df-01a2-ed58-3dd4-1df555078d9f",
             "name": {
-              "value": "lnd1-edge1"
+              "value": "lhr1-edge1"
             },
             "interfaces": {
               "edges": [
@@ -17,7 +17,7 @@
                       "value": "Ethernet1"
                     },
                     "description": {
-                      "value": "Connected to lnd1-edge2 Ethernet1"
+                      "value": "Connected to lhr1-edge2 Ethernet1"
                     },
                     "speed": {
                       "value": 10000
@@ -84,7 +84,7 @@
                       "value": "Ethernet2"
                     },
                     "description": {
-                      "value": "Connected to lnd1-edge2 Ethernet2"
+                      "value": "Connected to lhr1-edge2 Ethernet2"
                     },
                     "speed": {
                       "value": 10000

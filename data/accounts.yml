@@ -1,0 +1,42 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: CoreAccount
+  data:
+    - name: pop-builder
+      type: Script
+      password: Password123
+      role: read-write
+    - name: CRM Synchronization
+      type: Script
+      password: Password123
+      role: read-write
+    - name: Jack Bauer
+      type: User
+      password: Password123
+      role: read-only
+    - name: Chloe O'Brian
+      type: User
+      password: Password123
+      role: read-write
+    - name: David Palmer
+      type: User
+      password: Password123
+      role: read-write
+    - name: Operation Team
+      type: User
+      password: Password123
+      role: read-only
+    - name: Engineering Team
+      type: User
+      password: Password123
+      role: read-write
+    - name: Architecture Team
+      type: User
+      password: Password123
+      role: read-only
+    - name: Generator
+      type: Script
+      password: Password123
+      role: read-write

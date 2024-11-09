@@ -2,8 +2,6 @@
 apiVersion: infrahub.app/v1
 kind: Object
 spec:
-
-  # LOCATIONS
   kind: LocationContinent
   data:
     - name: Europe

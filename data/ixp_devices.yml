@@ -2,8 +2,6 @@
 apiVersion: infrahub.app/v1
 kind: Object
 spec:
-
-  # LOCATIONS
   kind: DcimDevice
   data:
     - name: ord1-core1
@@ -26,23 +24,23 @@ spec:
       racklocation: rack-3389
       status: active
       rack_face: front
-    - name: lnd1-edge1
-      shortname: lnd1-edge1
+    - name: lhr1-edge1
+      shortname: lhr1-edge1
       racklocation: ld8-5964
       status: active
       rack_face: front
-    - name: lnd1-edge2
-      shortname: lnd1-edge2
+    - name: lhr1-edge2
+      shortname: lhr1-edge2
       racklocation: ld8-5964
       status: active
       rack_face: front
-    - name: lnd1-core1
-      shortname: lnd1-core1
+    - name: lhr1-core1
+      shortname: lhr1-core1
       racklocation: ld8-5965
       status: active
       rack_face: front
-    - name: lnd1-core2
-      shortname: lnd1-core2
+    - name: lhr1-core2
+      shortname: lhr1-core2
       racklocation: ld8-5965
       status: active
       rack_face: front

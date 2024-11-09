@@ -2,7 +2,7 @@
   "openconfig-interfaces:interface": [
     {
       "config": {
-        "description": "Connected to lnd1-edge2 Ethernet1",
+        "description": "Connected to lhr1-edge2 Ethernet1",
         "enabled": true
       },
       "name": "Ethernet1",
@@ -53,7 +53,7 @@
     },
     {
       "config": {
-        "description": "Connected to lnd1-edge2 Ethernet2",
+        "description": "Connected to lhr1-edge2 Ethernet2",
         "enabled": true
       },
       "name": "Ethernet2",

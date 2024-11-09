@@ -9,6 +9,8 @@ DATA_GENERATORS = [
 ]
 
 DATA = [
+    "data/accounts.yml",
+    "data/groups.yml",
     "data/ixp_platforms.yml",
     "data/ixp_locations.yml",
     "data/ixp_devices.yml"

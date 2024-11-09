@@ -1,0 +1,17 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: CoreStandardGroup
+  data:
+    - name: edge_router
+      label: Edge Router
+    - name: core_router
+      label: Core Router
+    - name: cisco_devices
+      label: Cisco Devices
+    - name: arista_devices
+      label: Arista Devices
+    - name: transit_interfaces
+      label: Transit Interface
+

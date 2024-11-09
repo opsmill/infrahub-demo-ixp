@@ -13,7 +13,7 @@
                       "value": "Ethernet1"
                     },
                     "description": {
-                      "value": "Connected to lnd1-edge2 Ethernet1"
+                      "value": "Connected to lhr1-edge2 Ethernet1"
                     },
                     "enabled": {
                       "value": true
@@ -79,7 +79,7 @@
                       "value": "Ethernet2"
                     },
                     "description": {
-                      "value": "Connected to lnd1-edge2 Ethernet2"
+                      "value": "Connected to lhr1-edge2 Ethernet2"
                     },
                     "enabled": {
                       "value": true

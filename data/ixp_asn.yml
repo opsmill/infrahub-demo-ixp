@@ -1,0 +1,19 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: RoutingAutonomousSystem
+  data:
+    - name:
+        value: AS64511
+        source: pop-builder
+        owner: Chloe O'Brian
+      asn:
+        value: 64511
+        source: pop-builder
+        owner: Chloe O'Brian
+      organization:
+        data:
+          name: Optimal Tech Telecommunications Online
+          kind: OrganizationProvider
+        source: pop-builder

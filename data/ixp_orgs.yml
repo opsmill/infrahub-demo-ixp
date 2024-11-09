@@ -1,0 +1,57 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: OrganizationProvider
+  data:
+    - name:
+        value: Optimal Tech Telecommunications Online
+        is_protected: true
+    - name:
+        value: Colt
+        is_protected: true
+    - name:
+        value: Verizon
+        is_protected: true
+    - name:
+        value: GTT
+        is_protected: true
+    - name:
+        value: Hurricane Electric
+        is_protected: true
+    - name:
+        value: Lumen
+        is_protected: true
+    - name:
+        value: Zayo
+        is_protected: true
+    - name:
+        value: OTTO
+        is_protected: true
+    - name:
+        value: Equinix
+        is_protected: true
+    - name:
+        value: Arelion
+        is_protected: true
+    - name:
+        value: Cogent Communications
+        is_protected: true
+    - name:
+        value: NTT America, Inc
+        is_protected: true
+    - name:
+        value: TATA Communications (America) Inc
+        is_protected: true
+    - name:
+        value: KDDI CORPORATION
+        is_protected: true
+    - name:
+        value: Telecom Italia Sparkle S.p.A
+        is_protected: true
+    - name:
+        value: PCCW Global, Inc.
+        is_protected: true
+    - name:
+        value: Comcast Cable Communications, LLC
+        is_protected: true

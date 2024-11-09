@@ -5,7 +5,6 @@ from collections import defaultdict
 from ipaddress import IPv4Network
 from typing import Dict, List
 
-# from infrahub_sdk import UUIDT, InfrahubClient, InfrahubNode, NodeStore
 from infrahub_sdk import InfrahubClient
 from infrahub_sdk.node import InfrahubNode
 from infrahub_sdk.store import NodeStore
@@ -14,98 +13,7 @@ from infrahub_sdk.exceptions import GraphQLError
 # flake8: noqa
 # pylint: skip-file
 
-LOCATIONS = {
-    "Europe": {
-        "countries": {
-            "Belgium": {},
-            "Germany": {
-                "de-central": {
-                    "Frankfurt": {
-                        "building-3": {
-                            "floor-32": {
-                                "suite-325": {"rack-3255": ["ord1-core1", "ord1-edge1"]}
-                            },
-                            "floor-33": {
-                                "suite-338": {"rack-3389": ["ord1-core2", "ord1-edge2"]}
-                            },
-                        }
-                    }
-                }
-            },
-            "United Kingdom": {
-                "uk-east": {
-                    "London": {
-                        "Equinix LD8": {
-                            "floor-59": {
-                                "suite-ld8-596": {
-                                    "ld8-5964": ["lnd1-edge1", "lnd1-edge2"],
-                                    "ld8-5965": ["lnd1-core1", "lnd1-core2"],
-                                }
-                            }
-                        }
-                    },
-                },
-            },
-        },
-        "transit_policy_out": "RM_TRANSIT_EMEA_OUT",
-        "transit_policy_in": "RM_TRANSIT_EMEA_IN",
-    },
-    "Africa": {
-        "countries": {"Morocco": {}},
-        "transit_policy_out": "RM_TRANSIT_AFRICA_OUT",
-    },
-    "Asia": {
-        "countries": {"India": {}, "Japan": {}},
-        "transit_policy_out": "RM_TRANSIT_ASIA_OUT",
-    },
-    "Oceania": {
-        "countries": {"Australia": {}},
-        "transit_policy_out": "RM_TRANSIT_OCEANIA_OUT",
-    },
-    "North America": {
-        "countries": {
-            "United States of America": {
-                "us-east": {"Atlanta": {}, "south": {}},
-                "us-central": {
-                    "Denver": {
-                        "building-1": {
-                            "floor-11": {
-                                "suite-111": {
-                                    "rack-1111": ["den1-core1", "den1-edge1"]
-                                },
-                                "suite-112": {"rack-1121": []},
-                            },
-                            "floor-12": {"suite-121": {"rack-1211": []}},
-                        },
-                        "building-2": {
-                            "floor-21": {
-                                "suite-211": {"rack-2111": []},
-                                "suite-212": {"rack-2121": []},
-                            },
-                            "floor-22": {
-                                "suite-221": {"rack-2211": ["den1-core2", "den1-edge2"]}
-                            },
-                        },
-                    },
-                },
-            },
-        },
-        "transit_policy_out": "RM_TRANSIT_NORTH_AMERICA_OUT",
-    },
-    "South America": {
-        "countries": {"Brazil": {}},
-        "transit_policy_out": "RM_SOUTH_AMERICA_OUT",
-    },
-}
-
-SITES = ["atl", "ord", "lnd", "den", "dfw", "jfk", "bkk", "sfo", "iah", "mco"]
-
-PLATFORMS = (
-    ("Cisco IOS", "ios", "ios", "cisco_ios", "ios"),
-    ("Cisco NXOS SSH", "nxos_ssh", "nxos_ssh", "cisco_nxos", "nxos"),
-    ("Juniper JunOS", "junos", "junos", "juniper_junos", "junos"),
-    ("Arista EOS", "eos", "eos", "arista_eos", "eos"),
-)
+SITES = ["atl", "ord", "lhr", "den", "dfw", "jfk", "bkk", "sfo", "iah", "mco"]
 
 DEVICES = (
     ("edge1", "active", "7280R3", "profile1", "edge", ["red", "green"], "Arista EOS"),
@@ -170,7 +78,7 @@ IXP_ENDPOINTS = (
         "name": "linx_otto_1",
         "description": "OTTO LINX LON 1 - 1",
         "ixp": "LINX LON1",
-        "device": "lnd1-edge1",
+        "device": "lhr1-edge1",
         "interface": "Ethernet7",
         "ipaddress": "203.0.113.78/24",
     },
@@ -178,7 +86,7 @@ IXP_ENDPOINTS = (
         "name": "linx_otto_2",
         "description": "OTTO LINX LON 1 - 2",
         "ixp": "LINX LON1",
-        "device": "lnd1-edge2",
+        "device": "lhr1-edge2",
         "interface": "Ethernet7",
         "ipaddress": "203.0.113.79/24",
     },
@@ -227,11 +135,11 @@ def site_names_generator(nbr_site=2) -> List[str]:
 
 P2P_NETWORKS_POOL = {
     ("atl1", "edge1", "ord1", "edge1"): next(P2P_NETWORK_POOL).hosts(),
-    ("atl1", "edge1", "lnd1", "edge1"): next(P2P_NETWORK_POOL).hosts(),
-    ("lnd1", "edge1", "ord1", "edge1"): next(P2P_NETWORK_POOL).hosts(),
+    ("atl1", "edge1", "lhr1", "edge1"): next(P2P_NETWORK_POOL).hosts(),
+    ("lhr1", "edge1", "ord1", "edge1"): next(P2P_NETWORK_POOL).hosts(),
     ("atl1", "edge2", "ord1", "edge2"): next(P2P_NETWORK_POOL).hosts(),
-    ("atl1", "edge2", "lnd1", "edge2"): next(P2P_NETWORK_POOL).hosts(),
-    ("lnd1", "edge2", "ord1", "edge2"): next(P2P_NETWORK_POOL).hosts(),
+    ("atl1", "edge2", "lhr1", "edge2"): next(P2P_NETWORK_POOL).hosts(),
+    ("lhr1", "edge2", "ord1", "edge2"): next(P2P_NETWORK_POOL).hosts(),
 }
 
 BACKBONE_CIRCUIT_IDS = [
@@ -330,26 +238,6 @@ ORGANIZATIONS = (
 
 INTERFACE_OBJS: Dict[str, List[InfrahubNode]] = defaultdict(list)
 
-ACCOUNTS = (
-    ("pop-builder", "Script", "Password123", "read-write"),
-    ("CRM Synchronization", "Script", "Password123", "read-write"),
-    ("Jack Bauer", "User", "Password123", "read-only"),
-    ("Chloe O'Brian", "User", "Password123", "read-write"),
-    ("David Palmer", "User", "Password123", "read-write"),
-    ("Operation Team", "User", "Password123", "read-only"),
-    ("Engineering Team", "User", "Password123", "read-write"),
-    ("Architecture Team", "User", "Password123", "read-only"),
-    ("Generator", "Script", "Password123", "read-write"),
-)
-
-
-GROUPS = (
-    ("edge_router", "Edge Router"),
-    ("core_router", "Core Router"),
-    ("cisco_devices", "Cisco Devices"),
-    ("arista_devices", "Arista Devices"),
-    ("transit_interfaces", "Transit Interface"),
-)
 
 BGP_PEER_GROUPS = (
     ("POP_INTERNAL", "IMPORT_INTRA_POP", "EXPORT_INTRA_POP", "OTTO", "OTTO"),
@@ -438,7 +326,7 @@ async def create_connection_transit_port(
     ixp_interface = await client.get(
         branch=branch,
         kind="DcimInterface",
-        device__name__value="lnd1-edge1",
+        device__name__value="lhr1-edge1",
         name__value="Ethernet5",
     )
     ixp_interface.ip_addresses.add(local_ip_addr)
@@ -459,73 +347,6 @@ async def create_connection_transit_port(
     )
     await transit_port.save()
 
-
-async def create_location_hierarchy(
-    client: InfrahubClient, log: logging.Logger, branch: str
-):
-    for continent, data in LOCATIONS.items():
-        infra_continent = await client.create(
-            kind="LocationContinent", data={"name": continent}
-        )
-        await infra_continent.save()
-        log.info(
-            f"- Created {infra_continent._schema.kind} - {infra_continent.name.value}"
-        )
-
-        for country, regions in data["countries"].items():
-            infra_country = await client.create(
-                kind="LocationCountry",
-                data={"name": country, "parent": infra_continent},
-            )
-            await infra_country.save()
-            log.info(
-                f"- Created {infra_country._schema.kind} - {infra_country.name.value}"
-            )
-
-            for region, metros in regions.items():
-                infra_region = await client.create(
-                    kind="LocationRegion",
-                    data={"name": region, "parent": infra_country},
-                )
-                await infra_region.save()
-
-                for metro, buildings in metros.items():
-                    infra_metro = await client.create(
-                        kind="LocationMetro",
-                        data={"name": metro, "parent": infra_region},
-                    )
-                await infra_metro.save()
-                for building, floors in buildings.items():
-                    infra_building = await client.create(
-                        kind="LocationBuilding",
-                        data={"name": building, "parent": infra_metro},
-                    )
-                    await infra_building.save()
-                    for floor, suites in floors.items():
-                        infra_floor = await client.create(
-                            kind="LocationFloor",
-                            data={"name": floor, "parent": infra_building},
-                        )
-                        await infra_floor.save()
-                        for suite, racks in suites.items():
-                            infra_suite = await client.create(
-                                kind="LocationSuite",
-                                data={"name": suite, "parent": infra_floor},
-                            )
-                            await infra_suite.save()
-                            for rack, devices in racks.items():
-                                infra_rack = await client.create(
-                                    kind="LocationRack",
-                                    data={"name": rack, "parent": infra_suite},
-                                )
-                                await infra_rack.save()
-
-                                for device in devices:
-                                    infra_device = await client.get(
-                                        "DcimDevice", name__value=device
-                                    )
-                                    infra_device.location = infra_rack
-                                    await infra_device.save()
 
 
 async def create_branch_ixp_cogent_transit(client: InfrahubClient, log: logging.Logger):
@@ -1228,62 +1049,9 @@ async def run(client: InfrahubClient, log: logging.Logger, branch: str):
     # Create User Accounts, Groups, Organizations & Platforms
     # ------------------------------------------
     log.info(f"Creating User Accounts, Groups & Organizations & Platforms")
-    for account in ACCOUNTS:
-        try:
-            obj = await client.create(
-                branch=branch,
-                kind="CoreAccount",
-                data={
-                    "name": account[0],
-                    "password": account[2],
-                    "type": account[1],
-                    "role": account[3],
-                },
-            )
-            await obj.save()
-        except GraphQLError:
-            pass
-        store.set(key=account[0], node=obj)
-        log.info(f"- Created {obj._schema.kind} - {obj.name.value}")
 
     batch = await client.create_batch()
-    for group in GROUPS:
-        obj = await client.create(
-            branch=branch,
-            kind="CoreStandardGroup",
-            data={"name": group[0], "label": group[1]},
-        )
 
-        batch.add(task=obj.save, node=obj)
-        store.set(key=group[0], node=obj)
-
-    for org in ORGANIZATIONS:
-        obj = await client.create(
-            branch=branch,
-            kind="OrganizationProvider",
-            data={"name": {"value": org[0], "is_protected": True}},
-        )
-        batch.add(task=obj.save, node=obj)
-        store.set(key=org[0], node=obj)
-
-    for platform in PLATFORMS:
-        obj = await client.create(
-            branch=branch,
-            kind="DcimPlatform",
-            data={
-                "name": platform[0],
-                "nornir_platform": platform[1],
-                "napalm_driver": platform[2],
-                "netmiko_device_type": platform[3],
-                "ansible_network_os": platform[4],
-            },
-        )
-        batch.add(task=obj.save, node=obj)
-        store.set(key=platform[0], node=obj)
-
-    # Create all Groups, Accounts and Organizations
-    async for node, _ in batch.execute():
-        log.info(f"- Created {node._schema.kind} - {node.name.value}")
 
     account_pop = store.get("pop-builder")
     account_cloe = store.get("Chloe O'Brian")

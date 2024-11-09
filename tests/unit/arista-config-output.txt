@@ -1,4 +1,4 @@
-hostname lnd1-edge1
+hostname lhr1-edge1
 ip name-server vrf MGMT 8.8.8.8
 !
 dns domain opsmill.com
@@ -14,7 +14,7 @@ username admin privilege 15 role network-admin secret admin
 vrf instance MGMT
 !
 interface Ethernet1 
-  description Connected to lnd1-edge2 Ethernet1
+  description Connected to lhr1-edge2 Ethernet1
   no shutdown
   mtu 1500
   no switchport
@@ -27,7 +27,7 @@ interface Ethernet10
   no switchport
 !
 interface Ethernet2 
-  description Connected to lnd1-edge2 Ethernet2
+  description Connected to lhr1-edge2 Ethernet2
   no shutdown
   mtu 1500
   no switchport
