@@ -1,0 +1,18 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: RoutingBGPPeerGroup
+  data:
+    - name:
+        value: POP_INTERNAL
+        source: pop-builder
+        owner: Chloe O'Brian
+      import_policies:
+        value: IMPORT_INTRA_POP
+      export_policies:
+        value: EXPORT_INTRA_POP
+      local_as:
+        value: OTTO
+      remote_as:
+        value: OTTO

@@ -5,38 +5,47 @@ spec:
   kind: CoreAccount
   data:
     - name: pop-builder
-      type: Script
+      account_type: Script
       password: Password123
-      role: read-write
+      member_of_groups:
+        - "Engineering Team"
     - name: CRM Synchronization
-      type: Script
+      account_type: Script
       password: Password123
-      role: read-write
+      member_of_groups:
+        - "Engineering Team"
     - name: Jack Bauer
-      type: User
+      account_type: User
       password: Password123
-      role: read-only
+      member_of_groups:
+        - "Operation Team"
     - name: Chloe O'Brian
-      type: User
+      account_type: User
       password: Password123
-      role: read-write
+      member_of_groups:
+        - "Engineering Team"
     - name: David Palmer
-      type: User
+      account_type: User
       password: Password123
-      role: read-write
+      member_of_groups:
+        - "Engineering Team"
     - name: Operation Team
-      type: User
+      account_type: User
       password: Password123
-      role: read-only
+      member_of_groups:
+        - "Operation Team"
     - name: Engineering Team
-      type: User
+      account_type: User
       password: Password123
-      role: read-write
+      member_of_groups:
+        - "Engineering Team"
     - name: Architecture Team
-      type: User
+      account_type: User
       password: Password123
-      role: read-only
+      member_of_groups:
+        - "Operation Team"
     - name: Generator
-      type: Script
+      account_type: Script
       password: Password123
-      role: read-write
+      member_of_groups:
+        - "Engineering Team"

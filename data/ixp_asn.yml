@@ -4,16 +4,86 @@ kind: Object
 spec:
   kind: RoutingAutonomousSystem
   data:
-    - name:
-        value: AS64511
-        source: pop-builder
-        owner: Chloe O'Brian
-      asn:
-        value: 64511
-        source: pop-builder
-        owner: Chloe O'Brian
-      organization:
-        data:
-          name: Optimal Tech Telecommunications Online
-          kind: OrganizationProvider
-        source: pop-builder
+    - name: AS64511
+      asn: 64511
+      organization: Optimal Tech Telecommunications Online
+    # - name:
+    #     value: AS8220
+    #   asn:
+    #     value: 8220
+    #   organization: Colt
+    # - name:
+    #     value: AS701
+    #   asn:
+    #     value: 701
+    #   organization: Verizon
+    # - name:
+    #     value: AS3257
+    #   asn:
+    #     value: 3257
+    #   organization: GTT
+    # - name:
+    #     value: AS6939
+    #   asn:
+    #     value: 6939
+    #   organization: Hurricane Electric
+    # - name:
+    #     value: AS3356
+    #   asn:
+    #     value: 3356
+    #   organization: Lumen
+    # - name:
+    #     value: AS6461
+    #   asn:
+    #     value: 6461
+    #   organization: Zayo
+    # - name:
+    #     value: AS64496
+    #   asn:
+    #     value: 64496
+    #   organization: OTTO
+    # - name:
+    #     value: AS24115
+    #   asn:
+    #     value: 24115
+    #   organization: Equinix
+    # - name:
+    #     value: AS1299
+    #   asn:
+    #     value: 1299
+    #   organization: Arelion
+    # - name:
+    #     value: AS174
+    #   asn:
+    #     value: 174
+    #   organization: Cogent Communications
+    # - name:
+    #     value: AS2914
+    #   asn:
+    #     value: 2914
+    #   organization: NTT America, Inc
+    # - name:
+    #     value: AS6453
+    #   asn:
+    #     value: 6453
+    #   organization: TATA Communications (America) Inc
+    # - name:
+    #     value: AS2516
+    #   asn:
+    #     value: 2516
+    #   organization: KDDI CORPORATION
+    # - name:
+    #     value: AS6762
+    #   asn:
+    #     value: 6762
+    #   organization: Telecom Italia Sparkle S.p.A
+    # - name:
+    #     value: AS3491
+    #   asn:
+    #     value: 3491
+    #   organization: PCCW Global, Inc.
+    # - name:
+    #     value: AS7922
+    #   asn:
+    #     value: 7922
+    #   organization: Comcast Cable Communications, LLC

@@ -1,0 +1,20 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: CoreAccountRole
+  data:
+    - name: read-only
+      permissions:
+        kind: CoreObjectPermission
+        data:
+          - namespace: "*"
+            name: "*"
+            action: "view"
+            decision: 6 # Note 6 == allow_all
+      groups:
+        - "Operation Team"
+
+    - name: "General Access"
+      groups:
+        - "Engineering Team"
