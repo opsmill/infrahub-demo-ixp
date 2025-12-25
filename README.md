@@ -10,22 +10,11 @@
 - **Version Control**: Natively integrated into the graph database which opens up some new capabilities like branching, diffing, and merging data directly in the database.
 - **Unified Storage**: By combining a graph database and git, Infrahub stores data and code needed to manage the infrastructure.
 
-## Infrahub - Demo repository for IXPs
+## Infrahub - Demo repository for IXPs (ARCHIVED)
 
-This repository is demoing the key Infrahub features for an example service provider with IXP peerings.
+This archived repository is an older demo of the key Infrahub features for an example service provider with IXP peerings. Please see the [Infrahub documentation](https://docs.infrahub.app/) for more up-to-date examples.
 
-## Personal fork
-
-If you want to be able to make change to this repository, it is recommended to create a fork of this repository.
-Changes can be merged into the upstream repository using the pull request workflow.
-
-## Using Github CodeSpaces
-
-To have a consistent user experience, independent of hardware resources, we recommend the usage of Github CodeSpaces.
-
-- Click the green `Code` button
-- Switch to the `Codespaces` tab
-- Click the `+ to the right of Codespaces` (or click the `...` button and select `New with options` to be able to select your region)
+---
 
 ## Using the demo environment
 
